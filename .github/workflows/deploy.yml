@@ -10,11 +10,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout Code
         uses: actions/checkout@v3
 
+      - name: Install CodeRed CLI
+        run: |
+          wget -nv -O /usr/local/bin/cr https://www.codered.cloud/cli/cr-linux
+          chmod +x /usr/local/bin/cr
+
       - name: Deploy to CodeRed Cloud
-        uses: coderedcorp/codered-cloud-deploy@v1
-        with:
-          app-id: alkawtharuniversity
-          api-token: ${{ secrets.CR_TOKEN }}
+        run: cr deploy alkawtharuniversity
+        env:
+          CR_TOKEN: ${{ secrets.CR_TOKEN }}
