@@ -17,4 +17,4 @@ jobs:
         uses: coderedcorp/codered-cloud-deploy@v1
         with:
           app-id: ${{ alkawtharuniversity }}
-          api-token: ${{ FkaU23IVGa4LTWAfb2vuyMyUATGxzLjt }}
+          api-token: ${{ secrets.CR_TOKEN }}
