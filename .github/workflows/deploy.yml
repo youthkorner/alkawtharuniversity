@@ -29,6 +29,5 @@ jobs:
 
       - name: Deploy
         run: cr deploy 
-        # WEBAPP --static-root website/static/website # Replace <path_to_your_static_files>
         env:
           CR_TOKEN: ${{ secrets.CR_TOKEN }}
