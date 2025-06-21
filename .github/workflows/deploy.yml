@@ -1,33 +1,20 @@
-name: Deploy to CodeRed Cloud
+name: CodeRed Cloud Deploy
 
 on:
   push:
     branches:
-      - main # Or your main branch name, e.g., master, production
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4 # Checks out your repository
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-      # If your static site has a build step (e.g., uses a static site generator like Jekyll, Hugo, Eleventy, or a build tool like Webpack/Vite), add those steps here.
-      # Example for a simple build (adjust as needed for your specific setup):
-      # - name: Setup Node.js
-      #   uses: actions/setup-node@v4
-      #   with:
-      #     node-version: '18'
-      # - name: Install dependencies
-      #   run: npm install
-      # - name: Build static site
-      #   run: npm run build # Or whatever your build command is
-
-      - name: Install CodeRed Cloud CLI
-        run: |
-          wget -nv -O /usr/local/bin/cr "https://www.codered.cloud/cli/cr-linux"
-          chmod +x /usr/local/bin/cr
-
-      - name: Deploy
-        run: cr deploy 
-        env:
-          CR_TOKEN: ${{ secrets.CR_TOKEN }}
+      - name: Deploy to CodeRed Cloud
+        uses: coderedcorp/codered-cloud-deploy@v1
+        with:
+          app-id: alkawtharuniversity
+          api-token: ${{ secrets.CR_TOKEN }}
