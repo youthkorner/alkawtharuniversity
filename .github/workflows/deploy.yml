@@ -19,6 +19,6 @@ jobs:
           chmod +x /usr/local/bin/cr
 
       - name: Deploy to CodeRed Cloud
-        run: cr deploy 073497
+        run: cr deploy alkawtharuniversity
         env:
           CR_TOKEN: ${{ secrets.CR_TOKEN }}
